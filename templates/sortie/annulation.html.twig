@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Annuler une sortie</h1>
+
+    <form class="sortie-recap-annulation" action="" method="post">
+        <div>
+            <span>Nom de la sortie :</span>
+            <span>{{ sortie.nom }}</span>
+        </div>
+        <div>
+            <span>Date de la sortie :</span>
+            <span>{{ sortie.dateHeureDebut | date('d/m/y H:i') }}</span>
+        </div>
+        <div>
+            <span>Campus :</span>
+            <span>{{ sortie.campus.nom }}</span>
+        </div>
+        <div>
+            <span>Lieu :</span>
+            <span>
+                {{ sortie.lieu.nom }}
+                {{ sortie.lieu.rue }}
+                {{ sortie.lieu.ville.codePostal }}
+                {{ sortie.lieu.ville.nom }}
+            </span>
+        </div>
+        <div>
+            <span>Motif :</span>
+            <textarea name="motif-annulation"></textarea>
+        </div>
+        <div>
+            <input type="submit" name="enregistrer" value="Enregistrer">
+            <input type="submit" name="annuler" value="Annuler">
+        </div>
+    </form>
+{% endblock %}

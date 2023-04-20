@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="imageP"> {% if participant.imageProfil %}
+        <img src="{{ asset('images/imagesProfil/' ~ participant.imageProfil.urlImage)}}" class ="imgProfil"/>
+        {% endif %}
+        </div>
+        <div class="formulaire">
+            <h1>Mon profil</h1>
+            {{ form_start(profilForm) }}
+            {{ form_row(profilForm.pseudo) }}
+            {{ form_row(profilForm.prenom) }}
+            {{ form_row(profilForm.nom) }}
+            {{ form_row(profilForm.telephone) }}
+            {{ form_row(profilForm.mail) }}
+            {{ form_row(profilForm.motPasse) }}
+            {{ form_row(profilForm.confirmation) }}
+            {{ form_row(profilForm.campus) }}
+           {# {{ form_widget(profilForm) }} #}
+            <div class="validation">
+                {{ form_widget(profilForm.enregister) }}
+                <a href="{{ path('main_home') }}"><button type="button" id="annuler">Annuler</button></a>
+            </div>
+            <div class="formulairePhoto">
+            {{ form_end(profilForm) }}
+            {{ form_start(imageForm) }}
+            {{ form_widget(imageForm) }}
+            <div class="telechargementPhoto">
+                <button>Télécharger vers le serveur</button>
+            {{ form_end(imageForm) }}
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

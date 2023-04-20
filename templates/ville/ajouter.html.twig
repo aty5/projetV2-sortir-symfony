@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="ville-search-page">
+        {{ form_start(villeFiltreForm) }}
+        {{ form_widget(villeFiltreForm.nom) }}
+        {{ form_widget(villeFiltreForm.submit) }}
+        {{ form_end(villeFiltreForm) }}
+        <a href="{{ path('ville_ajouter') }}" class="clear-ville">X</a>
+    </div>
+    <div class="ville-page">
+        <table class="ville-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Code postal</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ville in villes %}
+                    <tr>
+                        <td>{{ ville.nom }}</td>
+                        <td class="code-postal">{{ ville.codePostal }}</td>
+                        <td class="ville-action">
+                            <a href="{{ path('ville_modifier', { id: ville.id }) }}"><img class="ville-pencil" src="{{ asset('images/pencil.png') }}" alt="modifier"></a>
+                            <span> - </span>
+                            <a href="{{ path('ville_supprimer', { id: ville.id }) }}" onclick="return confirm('Supprimer la ville: {{ ville.nom }}')"><img
+                                        src="{{ asset('images/delete.png') }}" alt="effacer" class="ville-delete"></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    {{ form_start(villeForm) }}
+                    <td class="ville-form-input">{{ form_widget(villeForm.nom, { 'attr': {'placeholder': 'Ajouter une nouvelle ville'}}) }}</td>
+                    <td class="ville-form-input">{{ form_widget(villeForm.codePostal,  { 'attr': {'placeholder': 'Code postal'}}) }}</td>
+                    <td class="ville-form-input ville-action">{{ form_widget(villeForm.submit) }}</td>
+                    {{ form_end(villeForm) }}
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

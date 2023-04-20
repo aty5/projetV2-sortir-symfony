@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(sortieForm) }}
+    <ul class="flash" onclick="this.remove()">
+        {% if form_errors(sortieForm.dateHeureDebut) %}
+            <li class="flash-error">{{ form_errors(sortieForm.dateHeureDebut) }}</li>
+        {% elseif form_errors(sortieForm.dateLimiteInscription) %}
+            <li class="flash-error">{{ form_errors(sortieForm.dateLimiteInscription) }}</li>
+        {% endif %}
+    </ul>
+    <div class="sortie-form">
+        <h2>Ajouter une nouvelle sortie</h2>
+        <div class="sortie-form-inner">
+            <div class="sortie-form-content">
+                <div class="sortie-form-description">
+                    {{ form_row(sortieForm.nom) }}
+                    <div class="sortie-form-input-group">
+                        {{ form_label(sortieForm.dateHeureDebut) }}
+                        {{ form_widget(sortieForm.dateHeureDebut) }}
+                    </div>
+                    <div class="sortie-form-input-group">
+                        {{ form_label(sortieForm.dateLimiteInscription) }}
+                        {{ form_widget(sortieForm.dateLimiteInscription) }}
+                    </div>
+                    {{ form_row(sortieForm.nbInscriptionsMax) }}
+                    {{ form_row(sortieForm.duree) }}
+                    {{ form_row(sortieForm.infosSortie) }}
+                </div>
+                <div class="sortie-form-localisation">
+                    {{ form_row(sortieForm.campus, {'value': app.user.campus.id}) }}
+                    {% if sortieForm.ville is defined %}
+                        {{ form_row(sortieForm.ville) }}
+                    {% endif %}
+                    {% if sortieForm.lieu is defined %}
+                        <div class="sortie-form-input-group">
+                            {{ form_label(sortieForm.lieu) }}
+                            <div style="display: flex; flex-direction: row; width: 100%; align-items: center">
+                                {{ form_widget(sortieForm.lieu) }}
+                                <a style="cursor:pointer; text-decoration: none; margin-left: 5px; border-radius: 90px; height: 25px; background: #24729e" onclick="showLieuForm()">+</a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                        {{ form_row(sortieForm.rue) }}
+                        {{ form_row(sortieForm.codePostal) }}
+                        {{ form_row(sortieForm.latitude) }}
+                        {{ form_row(sortieForm.longitude) }}
+                </div>
+            </div>
+            <div class="sortie-form-buttons-group">
+                {{ form_widget(sortieForm.enregistrer) }}
+                {{ form_widget(sortieForm.publier) }}
+                {% if '/modifier' in app.request.uri %}
+                    <a href="{{ path('sortie_annulation', {'id': app.request.get('id')}) }}">Supprimer</a>
+                {% endif %}
+                <a href="{{ path('main_home') }}" onclick="return confirm('Annuler l\'ajout d\'une nouvelle sortie?')">Annuler</a>
+            </div>
+        </div>
+    {{ form_end(sortieForm) }}
+    </div>
+    <div class="sortie-lieu-modal">
+        {{ include('lieu/ajouter.html.twig') }}
+    </div>
+    <script src="{{ asset('script/script.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,50 @@
+<header class="navbar">
+    <nav class="nav">
+        <div class="nav-logo-box">
+            <a class="logo" href="{{ path('main_home') }}">
+                <picture>
+                    {# <source media="(max-width: 600px)" srcset="{{ asset('images/logo_mobile.png') }}">#}
+                    <img src="{{ asset('images/logo_full_width.png') }}" alt="logo">
+                </picture>
+            </a>
+        </div>
+        {% if app.user %}
+            <div class="welcome">
+                    Bienvenue {{ app.user.pseudo }}
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{{ path('main_home') }}" class="nav-link">Accueil</a></li>
+                {% if app.user.administrateur == 1 %}
+                    <li id="sub-nav-control" class="nav-item sub-nav-control">
+                        Admin
+                        <ul class="sub-nav">
+                            <li class="sub-nav-item"><a href="{{ path('participant_gestion') }}" class="sub-nav-link">Participant</a></li>
+                            <li class="sub-nav-item"><a href="{{ path('ville_ajouter') }}" class="sub-nav-link">Villes</a></li>
+                            <li class="sub-nav-item"><a href="{{ path('main_home') }}" class="sub-nav-link">Campus</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+                <li class="nav-item"><a href="{{ path('participant_profil') }}" class="nav-link">Mon profil</a></li>
+                <li class="nav-item"><a href="{{ path('participant_logout') }}" class="nav-link">Se déconnecter</a></li>
+            </ul>
+            <img src="{{ asset('images/burger.png') }}" alt="burger" class="burger">
+        {% endif %}
+    </nav>
+    <script>
+        menu('burger');
+        menu('nav-list');
+        function menu(selecteur) {
+            document.querySelector('.' + selecteur).addEventListener('click', () => {
+                document.querySelector('.nav-list').classList.toggle('mobile-menu');
+            })
+        }
+
+
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+    </script>
+</header>

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="ajout-participant">
+        <h1>Ajouter un participant</h1>
+
+        {{ form_start(participantForm) }}
+
+        <div class="apf1">
+            {{ form_row(participantForm.mail) }}
+            {{ form_row(participantForm.pseudo) }}
+            {{ form_row(participantForm.nom) }}
+            {{ form_row(participantForm.prenom) }}
+            {{ form_row(participantForm.telephone) }}
+        </div>
+
+        <div class="apf2">
+            {{ form_widget(participantForm) }}
+        </div>
+
+        <div class="apf3">
+            <input type="submit" value="Enregistrer">
+            <a href="{{ path('participant_gestion') }}">
+                <button type="button" class="partretourliste">Retourner à la liste des participants</button>
+            </a>
+        </div>
+
+
+        {{ form_end(participantForm) }}
+    </div>
+
+    <div class="ajout-participant-multiple">
+        <h2>Ajout mutiple</h2>
+        <div class="explication-csv">
+            <p>Cette option permet d'ajouter en masse des participants au moyen d'un fichier CSV dont les champs sont, dans l'ordre :</p>
+            <ul>
+                <li>Email</li>
+                <li>Pseudo</li>
+                <li>Nom</li>
+                <li>Prénom</li>
+                <li>Téléphone</li>
+                <li>Nom complet du campus</li>
+                <li>Mot de passe</li>
+                <li>EstAdministrateur ("oui" ou "non")</li>
+                <li>EstActif ("oui" ou "non")</li>
+            </ul>
+        </div>
+
+
+        {{ form_start(csvFileForm) }}
+
+        {{ form_widget(csvFileForm) }}
+        <div class="apmsub">
+            <input type="submit" value="Ajouter en masse des participants">
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

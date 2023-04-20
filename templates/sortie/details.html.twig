@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+{% endblock %}
+
+{% block body %}
+    <div class="sortie-detail-view">
+        <h1>Sortie {{ sortie.nom }}</h1>
+        <div class="donnees-sortie">
+            <div>
+                <div>
+                    <span>Nom de la sortie :</span>
+                    <span>{{ sortie.nom }}</span>
+                </div>
+                <div>
+                    <span>Date et heure de la sortie :</span>
+                    <span>{{ sortie.dateHeureDebut | date('d M Y H:i:s') }}</span>
+                </div>
+                <div>
+                    <span>Date limite d'inscription :</span>
+                    <span>{{ sortie.dateLimiteInscription | date('d M Y') }}</span>
+                </div>
+                <div>
+                    <span>Nombre de places :</span>
+                    <span>{{ sortie.nbInscriptionsMax }}</span>
+                </div>
+                <div>
+                    <span>Durée :</span>
+                    <span>
+                        {{ sortie.duree <= 60 ?
+                                sortie.duree :
+                                (sortie.duree <= 24*60 ?
+                                    sortie.duree/60 ~ ' heures ' ~ sortie.duree%60 :
+                                    sortie.duree/(60*24) ~ ' jours ' ~ (sortie.duree%(60*24))/60 ~ ' heures ' ~ (sortie.duree%(60*24))/60) }}
+                        minutes
+                    </span>
+                </div>
+                <div>
+                    <span>Description et infos :</span>
+                    <span>{{ sortie.infosSortie | raw }}</span>
+                </div>
+            </div>
+
+            <div>
+                <div>
+                    <span>Campus :</span>
+                    <span>{{ sortie.campus.nom }}</span>
+                </div>
+                <div>
+                    <span>Lieu :</span>
+                    <span>{{ sortie.lieu.nom }}</span>
+                </div>
+                <div>
+                    <span>Rue :</span>
+                    <span>{{ sortie.lieu.rue }}</span>
+                </div>
+                <div>
+                    <span>Code postal :</span>
+                    <span>{{ sortie.lieu.ville.codePostal }}</span>
+                </div>
+                <div>
+                    <span>Latitude :</span>
+                    <span>{{ sortie.lieu.latitude >= 0 ? sortie.lieu.latitude ~ '° Nord' : -sortie.lieu.latitude ~ '° Sud' }}</span>
+                </div>
+                <div>
+                    <span>Longitude :</span>
+                    <span>{{ sortie.lieu.longitude >= 0 ? sortie.lieu.longitude ~ '° Est' : -sortie.lieu.longitude ~ '° Ouest'}}</span>
+                </div>
+            </div>
+        </div>
+
+
+<div class="infos-annexes">
+    <div class="participants-sortie">
+        <h2>Liste des participants inscrits :</h2>
+
+        <table class="tableau-participants-sortie">
+            <thead>
+            <th>Pseudo</th>
+            <th>Nom</th>
+            </thead>
+            <tbody>
+            {% for participant in sortie.participants %}
+                <tr>
+                    <td><a href="{{ path('participant_details', {'id':participant.id}) }}">{{ participant.pseudo }}</a></td>
+                    <td>{{ participant.prenom }} {{ participant.nom }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="map">
+    </div>
+
+
+    <script>
+        let map = L.map('map').setView([{{ sortie.lieu.latitude }}, {{ sortie.lieu.longitude }}], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        let marker = L.marker([{{ sortie.lieu.latitude }}, {{ sortie.lieu.longitude }}]).addTo(map);
+    </script>
+</div>
+</div>
+
+
+
+
+{% endblock %}

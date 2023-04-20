@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="gestion-participants">
+
+        {{ form_start(participantsForm) }}
+
+        <h1>{{ form_label(participantsForm.participants) }}</h1>
+        <div class="enteteajoutpart">
+            <input type="checkbox" id="select-all" name="select-all">
+            <label for="select-all"><strong>Sélectionner / désélectionner tou.te.s les participant.e.s</strong></label>
+        </div>
+
+
+
+        {{ form_widget(participantsForm.participants) }}
+        <div class="boutonsgestionpart">
+            {{ form_widget(participantsForm) }}
+        </div>
+
+        <div class="boutonajoutpart">
+            <a href="{{ path('participant_ajouter') }}"><button type="button"><h2>Ajouter des participants</h2></button></a>
+        </div>
+
+        {{ form_end(participantsForm) }}
+
+
+
+        <script>
+            const labels = document.getElementsByTagName("label");
+            for (const label of labels) {
+                const linebreak = document.createElement("br");
+                label.after(linebreak);
+            }
+
+            let ckd = false;
+            const checkboxes = document.getElementsByClassName("checkbox-participant");
+            const selectAll = document.getElementById("select-all");
+            selectAll.addEventListener('change', () => {
+                ckd = !ckd;
+                for (const checkbox of checkboxes) {
+                    if (checkbox.id !== "select-all") {
+                        checkbox.checked = ckd;
+                    }
+                }
+                selectAll.checked = false;
+            })
+        </script>
+    </div>
+
+
+{% endblock %}
+
+

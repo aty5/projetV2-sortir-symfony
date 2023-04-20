@@ -1,0 +1,135 @@
+.ville-page {
+    width: 65%;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.79);
+    height: 70vh;
+    max-height: 70vh;
+    overflow-y: scroll;
+    border-radius: 8px;
+    box-shadow: 3px 3px 10px 8px rgba(0, 0, 0, 0.02);
+}
+
+.ville-pencil {
+    width: 20px;
+}
+
+.ville-delete {
+    width: 20px;
+}
+
+.ville-action {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+.ville-search-page {
+    width: 40%;
+    margin: 40px auto 30px;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px 8px rgba(0, 0, 0, 0.02);
+    padding: 10px;
+    align-items: center;
+}
+
+.ville-search-page form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.ville-search-page input {
+    width: 85%;
+    margin: auto;
+    height: 30px;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+
+.ville-search-page button {
+    background: #3b82f6;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 0 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.clear-ville {
+    background: #B0413E;
+    color: white;
+    border-radius: 45px;
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.ville-search-page label {
+    font-size: 16px;
+}
+
+.ville-table thead {
+    position: sticky;
+    top: 0;
+}
+
+.ville-table tfoot {
+    position: sticky;
+    bottom: 0;
+}
+
+.ville-table {
+    width: 100%;
+}
+
+.ville-table th {
+    padding: 10px 0;
+    background: white;
+}
+
+.code-postal {
+    text-align: right;
+}
+
+.ville-table td {
+    padding: 10px 10px 10px 15px;
+}
+
+.ville-table td input {
+    width: 100%;
+}
+
+.ville-table .ville-form-input {
+    padding: 3px;
+    margin: 0;
+}
+
+.ville-form-input input {
+    height: 30px;
+    font-size: 16px;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.ville-submit {
+    background: #22d789;
+    border-radius: 45px;
+    width: 30px;
+    height: 30px;
+    margin: 3px auto;
+    border: none;
+    font-weight: bold;
+    text-align: center;
+}

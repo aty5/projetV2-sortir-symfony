@@ -1,0 +1,119 @@
+.sortir-search-box {
+    background: rgba(255, 255, 255, 0.79);
+    width: 70%;
+    margin: auto;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px 8px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.sortir-search-box .btn-form-search {
+    background: #3b82f6;
+    color: white;
+    margin: 0 20px;
+}
+
+.sortir-search-box .filtre-form-box1 {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sortir-search-box .filtre-form-box1 div {
+    display: flex;
+    flex-direction: column;
+    margin: 4px 5px 4px 0;
+}
+
+.filtre-form-box1 input {
+    height: 30px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+
+.filtre-form-box1 select {
+    height: 30px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+
+.sortir-search-box .filtre-form-box2 {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.filtre-form-box2 div {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+    margin: 3px 0 3px;
+}
+
+.filtre-form-box2 div label {
+    margin-left: 5px;
+}
+
+.sortir-search-box .filtre-form-box1 .filtre-form-date {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.sortir-search-box .filtre-form-box1 .filtre-form-date div {
+    width: 50%;
+    height: auto;
+}
+
+.tabSorties th:nth-child(9), .tabSorties td:nth-child(2), .tabSorties td:nth-child(10) {
+    display: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .main .infosConnexion {
+        display: none;
+    }
+
+    .sortir-search-box {
+        display: none;
+    }
+
+    .btn-create-sortie {
+        display: none;
+    }
+
+    .main .liste-des-sorties {
+        width: 100%;
+        margin: 0;
+        max-height: 100vh;
+        height: 100vh;
+    }
+
+    .tabSorties td:nth-child(4), .tabSorties th:nth-child(3), .tabSorties td:nth-child(5), .tabSorties th:nth-child(4),
+    .tabSorties td:nth-child(6), .tabSorties th:nth-child(5), .tabSorties td:nth-child(7), .tabSorties th:nth-child(6),
+    .tabSorties td:nth-child(8), .tabSorties th:nth-child(7), .tabSorties td:nth-child(9), .tabSorties th:nth-child(8)
+    {
+        display: none;
+    }
+
+    .tabSorties td:nth-child(10), .tabSorties th:nth-child(9) {
+        display: block !important;
+        width: 25vw;
+    }
+
+    .tabSorties .tabResultSortie .sortie-mobile {
+        display: block;
+    }
+
+    .tabSorties .sortie-desktop {
+        display: none;
+    }
+}

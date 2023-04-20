@@ -1,0 +1,130 @@
+.navbar {
+    background: white;
+    width: 100%;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.09);
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.nav {
+    width: 75%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    position: relative;
+}
+
+.nav-item {
+    list-style: none;
+    padding: 10px 15px;
+}
+
+.nav-link {
+    color: #0e0e20;
+    text-decoration: none;
+}
+
+.nav-logo-box {
+    height: 100%;
+}
+
+.logo {
+    height: 100%;
+}
+
+.logo picture img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.sub-nav-control {
+    cursor: pointer;
+}
+
+.sub-nav {
+    top: 35px;
+    background: #f3f3f3;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.09);
+    position: absolute;
+    display: none;
+    z-index: 5;
+}
+
+#sub-nav-control:hover {
+    text-decoration: underline;
+}
+
+#sub-nav-control:hover .sub-nav, #sub-nav-control .sub-nav-item:hover {
+    display: block;
+}
+
+.sub-nav-item {
+    z-index: 5;
+    display: block;
+    padding: 10px 20px 10px 5px;
+    cursor: pointer;
+}
+
+.sub-nav-item a {
+    padding: 10px 20px 10px 20px;
+    color: #0e0e20;
+    text-decoration: none;
+}
+
+.sub-nav-item a:hover{
+    text-decoration: underline;
+}
+
+.burger {
+    width: 30px;
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav-list {
+        position: fixed;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.84);
+        top: 0;
+        left: 0;
+        text-align: center;
+        justify-content: center;
+        font-size: 30px;
+        margin-left: -100vw;
+        z-index: 10;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .welcome {
+        display: none;
+    }
+
+    .nav .nav-list .nav-item {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .mobile-menu {
+        margin-left: 0;
+    }
+
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

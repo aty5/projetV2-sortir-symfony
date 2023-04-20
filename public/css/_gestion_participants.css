@@ -1,0 +1,53 @@
+.gestion-participants form {
+    background: rgba(255, 255, 255, 0.79);
+    max-width: 800px;
+    min-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 10px 8px rgba(0, 0, 0, 0.02);
+}
+
+.gestion-participants form h1 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.boutonajoutpart button {
+    padding: 5px;
+    min-width: 20%;
+    background: #3b82f6;
+    color: white;
+    margin-top: 10px;
+}
+
+.enteteajoutpart {
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+    border-bottom: 1px dashed black;
+}
+.boutonsgestionpart div {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2px;
+}
+
+.boutonsgestionpart button {
+    padding: 5px;
+    min-width: 20%;
+    background: #3b82f6;
+    color: white;
+}
+

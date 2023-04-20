@@ -1,0 +1,56 @@
+.profilParticipant{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.pseudoParticipant{
+    text-align: center;
+}
+
+.donnees-participant{
+    display: flex;
+    flex-direction: column;
+
+}
+div.donnees-participant{
+    width: 75%;
+
+}
+.photoUser img{
+    width : 200px;
+    height: 200px;
+    border: solid 1px;
+    border-radius: 25px;
+}
+
+.donnees-participant h1{
+    margin-bottom: 5%;
+}
+
+.donnees-participant div label{
+    width: 50%;
+    margin-bottom: 2%;
+}
+
+.colonneDetail{
+    width: 50%;
+    margin: auto;
+}
+
+
+.colonneDetail div{
+    display: flex;
+}
+
+.detailsButton{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.detailsButton button{
+    height: 45px;
+    width: 80px;
+}

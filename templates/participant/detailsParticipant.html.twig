@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class = profilParticipant>
+        {% if participant.imageProfil %}
+            <div class="photoUser">
+                <img src="{{ asset('images/imagesProfil/' ~ participant.imageProfil.urlImage) }}"/>
+            </div>
+        {% endif %}
+        <div class="donnees-participant">
+            <h1 class="pseudoParticipant">{{ participant.pseudo }}</h1>
+            <div class="colonneDetail">
+
+                <div>
+                    <label class="labelDetails">Prénom : </label>
+                    <span class="detailsParticipant">{{ participant.prenom }}</span>
+                </div>
+                <div>
+                    <label class="labelDetails">Nom : </label>
+                    <span class="detailsParticipant">{{ participant.nom }}</span>
+                </div>
+                <div>
+                    <label class="labelDetails">Téléphone : </label>
+                    <span class="detailsParticipant">{{ participant.telephone }}</span>
+                </div>
+                <div>
+                    <label class="labelDetails">Email : </label>
+                    <span class="detailsParticipant">{{ participant.mail }}</span>
+                </div>
+                <div>
+                    <label class="labelDetails">Campus : </label>
+                    <span class="detailsParticipant">{{ participant.campus.nom }}</span>
+                </div>
+                <div class="detailsButton">
+                    <a href="{{ precedent }}">
+                    <button>Retour</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

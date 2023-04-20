@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les sorties organisées{% endblock %}
+
+{% block body %}
+    <div class="infosConnexion">
+        <span>
+            Date du jour :  {{ "now"|date("d/m/Y") }}
+        </span>
+        <span>
+            Participant : {{ app.user.prenom }} {{ app.user.nom }}
+        </span>
+    </div>
+    <div class="sortir-search-box">
+        <div class="filtre-form-title">
+            <h1>Filtrer les sorties</h1>
+        </div>
+        <div class="filtre-form">
+            {{ form_start(sortiesForm) }}
+            <div class="filtre-form-box1">
+                {{ form_row(sortiesForm.nom) }}
+                {{ form_row(sortiesForm.campus,{'value': app.user.campus.id}) }}
+                <div class="filtre-form-date">
+                    {{ form_row(sortiesForm.dateDebutRecherche) }}
+                    {{ form_row(sortiesForm.dateFinRecherche) }}
+                </div>
+            </div>
+            <div class="filtre-form-box2" >
+                {{ form_row(sortiesForm.organisateur) }}
+                {{ form_row(sortiesForm.inscrit) }}
+                {{ form_row(sortiesForm.pasInscrit) }}
+                {{ form_row(sortiesForm.sortiesPassees) }}
+            </div>
+            <input class="btn-form-search recherche" id="btn-search" name="submit" type="submit" value="Rechercher">
+            {{ form_end(sortiesForm) }}
+        </div>
+    </div>
+
+        <!--  Affichage des sorties sous format de tableau  -->
+
+    <div class="liste-des-sorties">
+
+        <table class="tabSorties" >
+            <thead class="tabTitleSorties">
+                <tr>
+                    <th>Nom de la sortie</th>
+                    <th>Date de la sortie</th>
+                    <th>Clôture</th>
+                    <th >Nombre de participants inscrits</th>
+                    <th>Etat</th>
+                    <th>Inscrit</th>
+                    <th>Organisateur</th>
+                    <th>Actions</th>
+                    <th>Lieu</th>
+                </tr>
+            </thead>
+            <tbody class="tabSortieBody">
+                {% for sortie in sorties %}
+                    <tr class="tabResultSortie">
+                        <td class="sortie-desktop">{{ sortie.nom }}</td>
+                        <td class="sortie-mobile"><a href="{{ path('sortie_details', {'id': sortie.id}) }}">{{ sortie.nom }}</a></td>
+                        <td>{{ sortie.dateHeureDebut|date("d/m/Y H:i") }}</td>
+                        <td>{{ sortie.dateLimiteInscription|date("d/m/Y") }}</td>
+                        <td>{{ sortie.participants|length }}/{{sortie.nbInscriptionsMax}}</td>
+                        <td>{{ sortie.etat.libelle }}</td>
+                        <td>{{ sortie in moi.inscriptions ? 'X' : '' }}</td>
+                        <td><a href="{{ path('participant_details',{'id':sortie.organisateur.id}) }}"> {{ sortie.organisateur.pseudo }}</a></td>
+                        <td>
+                            <!-- Permet de d'afficher la sortie -->
+                            {% if sortie.etat.libelle != 'Créée' %}
+                            <a href="{{ path('sortie_details', {'id' : sortie.id} ) }}">Afficher</a>
+                            {% endif %}
+
+                            <!-- Permet de d'annuler la sortie -->
+                            {% if (is_granted('ANNULER',sortie))%}
+                            <a href="{{ path('sortie_annulation',{'id': sortie.id}) }}">Annuler</a>
+                            {% endif %}
+
+                            <!-- Permet de modifier la sortie -->
+                            {% if sortie.organisateur == moi and sortie.etat.libelle == 'Créée'%}
+                            <a href="{{ path('sortie_modifier',{'id':sortie.id}) }}">Modifier</a>
+                            {% endif %}
+
+                            <!-- Permet de s'inscrire à la sortie -->
+                            {% if is_granted('INSCRIRE', sortie) %}
+                                <a href="{{ path('sortie_inscription',{'id': sortie.id}) }}">S'inscrire</a>
+                            {% endif %}
+
+                            <!-- Permet de se désinscrire -->
+                            {% if is_granted('DESINSCRIRE', sortie) %}
+                                <a href="{{ path('sortie_desinscription',{'id': sortie.id}) }}">Se desinscrire</a>
+                            {% endif %}
+
+                            <!-- Permet de publier -->
+                            {% if is_granted('PUBLIER',sortie) %}
+                                <a href="{{ path('sortie_publication',{'id' :sortie.id}) }}">Publier</a>
+                            {% endif %}
+                        </td>
+                        <td>{{ sortie.lieu.nom }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-create-sortie-container">
+        <a href="{{ path('sortie_ajouter') }}" class="btn-create-sortie" id="btn-create-sortie"> Créer une sortie </a>
+    </div>
+
+
+
+{% endblock %}
